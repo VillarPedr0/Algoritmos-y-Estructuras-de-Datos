@@ -1,15 +1,22 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int main()
 {
     int numero;
-    printf("Ingrese el número");
+    bool esCero;
+
+    printf("Ingrese un número: ");
     scanf("%d", &numero);
-    if(numero == 0)
+
+    if (numero == 0)
     {
-        printf("True");
-    } else {
-        printf("False");
+        esCero = true;
+    } else 
+    {
+        esCero = false;
     }
+
+    printf("%s\n", esCero ? "True" : "False");
     return 0;
 }
