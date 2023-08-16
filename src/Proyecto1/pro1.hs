@@ -226,7 +226,85 @@ multiplicaPrimos xs = product (filter esPrimo xs)
 -- si y s ́olo si n est ́a en la sucesi ́on de Fibonacci.
 fib :: Int -> Int
 fib n | n <= 0    = 0
-        | n == 1    = 1
-        | otherwise = fib (n - 1) + fib (n - 2)
+      | n == 1    = 1
+      | otherwise = fib (n - 1) + fib (n - 2)
 esFib :: Int -> Bool
-esFib n = n `elem` [fib i | i <- [0..]]
+esFib n = n `elem` [fib i | i <- [0..(n+1)]]
+{-
+ghci> esFib 5
+True
+ghci> esFib 10
+False
+-}
+-- i ) Utilizando la funci ́on del apartado anterior, defin ́ı la funci ́on todosFib :: [Int] -> Bool
+-- que dada una lista xs de enteros, devuelva si todos los elementos de la lista pertenecen
+-- (o no) a la sucesi ́on de Fibonacci.
+todosFib :: [Int] -> Bool
+todosFib xs = paraTodo' xs esFib
+{-
+ghci> todosFib [2,3,4,5]
+False
+ghci> todosFib [3,5,8,89]
+True
+-}
+-- 7. Indag ́a en Hoogle sobre las funciones map y filter. Tambi ́en podes consultar su tipo en
+-- ghci con el comando :t.
+--                               ¿Qué hacen estas funciones?
+{-
+MAP es una f de orden superior que toma una función (que a su vez ésta toma un a y un b,) 
+y una lista xs y aplica esa función a cada elemento de xs, produciendo una nueva lista.   
+    .----------------------------------------. 
+    :                                        : 
+    :   map :: (a -> b) -> [a] -> [b]        : 
+    :   map f [] = []                        : 
+    :   map f (x:xs) = f x : map f xs        : 
+    :                                        : 
+    `----------------------------------------'                                
+FILTER es una f que toma un predicado y una lista, 
+devolviendo una lista con los elementos que satisfacen el predicado. Es decir, si p x se evalua
+en True, x es incluido a la lista.
+    .-----------------------------------------------. 
+    :                                               :
+    :   filter :: (a -> Bool) -> [a] -> [b]         : 
+    :   filter p [] = []                            : 
+    :   filter p (x:xs) | p x = x : filter p xs     : 
+    :                   | otherwise = filter p xs   : 
+    :                                               : 
+    `------------------------------------------- ---'    
+-}
+--            ¿A qué equivale la expresión map succ [1, -4, 6, 2, -8], donde succ n = n+1?
+{-
+Equivale a la lista [2,-3,7,3,-7], donde cada elemento es el siguiente de la lista dada.
+-}
+--                       ¿Y la expresi ́on filter esPositivo [1, -4, 6, 2, -8]?
+--A la lista de los positivos [1,6,2] pertenecientes a la lista dada.
+
+
+-- 8. Programá una función que dada una lista de números xs, devuelve la lista que resulta de
+-- duplicar cada valor de xs.
+--    a) Definila usando recursión.
+dupLista :: (Num a) => [a] -> [a]
+dupLista [] = []
+dupLista (x:xs) = (2*x) : dupLista xs
+{-
+ghci> dupLista [1,2,3,4]
+[2,4,6,8]
+-}
+--    b) Definila utilizando la función map.
+dupLista' :: (Num a) => [a] -> [a]
+dupLista' xs = map (*2) xs
+{-
+ghci> dupLista' [1,2,3,4]
+[2,4,6,8]
+-}
+
+-- 9. Programá una función que dada una lista de números xs, calcula una lista que tiene como
+-- elementos aquellos números de xs que son primos.
+--    a) Definila usando recursión.
+primListas :: [Int] -> [Int]
+primListas [] = []
+primListas (x:xs) | esPrimo x = x : primListas xs
+                  | otherwise = primListas xs
+--    b) Definila utilizando la funci ́on filter.
+primListas' :: [Int] -> [Int]
+primListas' xs = filter esPrimo xs
