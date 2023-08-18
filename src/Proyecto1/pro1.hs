@@ -134,15 +134,23 @@ False
 sumatoria' :: [a] -> (a -> Int) -> Int
 sumatoria' [] f = 0
 sumatoria' (x:xs) f = f x + sumatoria' xs f
+{-
+ghci> sumatoria' [1,2,3,4] factorial
+33
+-}
 --    d ) productoria’ :: [a] -> (a -> Int) -> Int, dada una lista de xs de tipo [a]
 --    y una funcion t :: a -> Int, calcula el producto de los valores que resultan de la
 --    aplicacion de t a los elementos de xs.
 productoria' :: [a] -> (a -> Int) -> Int
 productoria' [] f = 1
 productoria' (x:xs) f = f x * productoria' xs f
+{-
+ghci> productoria' [1,2,3,4] factorial
+288
+-}
 
 
--- 5. Definı nuevamente la funcion paratodo, pero esta vez usando la funcion paratodo’ (sin
+-- 5. Definí nuevamente la funcion paratodo, pero esta vez usando la funcion paratodo’ (sin
 -- recursion ni analisis por casos!). 
 esTrue x = x == True
 paratodo'' :: [Bool] -> Bool
@@ -222,8 +230,8 @@ factorial x = product [1..x]-}
 -- de todos los números primos de una lista
 multiplicaPrimos :: [Int] -> Int
 multiplicaPrimos xs = product (filter esPrimo xs)
--- h) Programar la funci ́on esFib :: Int -> Bool, que dado un entero n, devuelve True
--- si y s ́olo si n est ́a en la sucesi ́on de Fibonacci.
+-- h) Programar la función esFib :: Int -> Bool, que dado un entero n, devuelve True
+-- si y s ́olo si n está en la sucesión de Fibonacci.
 fib :: Int -> Int
 fib n | n <= 0    = 0
       | n == 1    = 1
@@ -305,6 +313,75 @@ primListas :: [Int] -> [Int]
 primListas [] = []
 primListas (x:xs) | esPrimo x = x : primListas xs
                   | otherwise = primListas xs
+{-
+ghci> primListas [1,2,3,4,5,6,7,8,9]
+[2,3,5,7]
+ghci> primListas [1..100]
+[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
+-}
 --    b) Definila utilizando la funci ́on filter.
 primListas' :: [Int] -> [Int]
 primListas' xs = filter esPrimo xs
+{-
+ghci> primListas' [1,2,3,4,5,6,7,8,9]
+[2,3,5,7]
+ghci> primListas' [1..100]
+[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
+-}
+--    c) Revisá tu definicián del ejercicio 6g . ¿Cómo podes mejorarla?
+{-
+multiplicaPrimos :: [Int] -> Int
+multiplicaPrimos xs = product (filter esPrimo xs)
+-}
+
+
+-- 10. La función primIgualesA toma un valor y una lista, y calcula el tramo inicial más largo de
+-- la lista cuyos elementos son iguales a ese valor.
+--    a) Programá primIgualesA por recursión.
+primIgualesA :: (Eq a) => a -> [a] -> [a]
+primIgualesA _ []  = []
+primIgualesA k (x:xs) | k == x = x : primIgualesA x xs
+                      | otherwise = []
+{-
+ghci> primIgualesA 1 [1,1,2,3,4,1,1,1]
+[1,1]
+ghci> primIgualesA 2 [1,2,2,2,2,2,2,2]
+[]
+-}
+--    b) Programá nuevamente la función utilizando takeWhile.
+primIgualesA' :: (Eq a) => a -> [a] -> [a]
+primIgualesA' x = takeWhile (==x)
+{-
+ghci> primIgualesA' 1 [1,1,2,3,4,1,1,1]
+[1,1]
+ghci> primIgualesA' 2 [1,2,2,2,2,2,2,2]
+[]
+-}
+
+
+-- 11. La funci ́on primIguales toma una lista y devuelve el mayor tramo inicial de la lista cuyos
+-- elementos son todos iguales entre sí.
+--    a) Programá primIguales por recursión
+primIguales :: (Eq a) => [a] -> [a] 
+primIguales [] = []
+primIguales (x:xs) | (x == head xs) = x : primIguales xs 
+                   | otherwise = x : []
+{-
+ghci> primIguales [4,4,3,4,4,4,4,4,1]
+[4,4]
+ghci> primIguales [3,4,3,4,4,4,4,4,1]
+[3]
+-}
+--    b) Usá cualquier versión de primIgualesA para programar primIguales. Está permitido
+--    dividir en casos, pero no usar recursián.
+primIguales' :: (Eq a) => [a] -> [a]
+primIguales' (x:xs) = primIgualesA' x (x:xs)
+{-
+ghci> primIguales' [4,4,3,4,4,4,4,4,1]
+[4,4]
+ghci> primIguales' [3,4,3,4,4,4,4,4,1]
+[3]
+-}
+
+
+-- 
