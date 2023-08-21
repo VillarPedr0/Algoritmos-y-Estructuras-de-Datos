@@ -1,4 +1,4 @@
--- 1. Program ́a las siguientes funciones:
+-- 1. Programá las siguientes funciones:
 --    a) esCero :: Int -> Bool, que verifica si un entero es igual a 0.
 esCero :: Int -> Bool
 esCero x = x == 0
@@ -19,14 +19,12 @@ False
 -}
 --    c ) esVocal :: Char -> Bool, que verifica si un caracter es una vocal en minuscula.
 esVocal :: Char -> Bool
-esVocal x = x `elem` "aeiouAEIOU"
+esVocal x = x `elem` "aeiou"
 {-
 ghci> esVocal 'a'
 True
 ghci> esVocal 'v'
 False
-ghci> esVocal 'U'
-True
 -}
 
 -- 2. Programa las siguientes funciones usando recursion o composicion:
@@ -215,8 +213,7 @@ True
 --   e) Utilizando la funcion del apartado anterior, definí la función esPrimo:: Int -> Bool,
 --   que dado un entero n, devuelve True si y solo si n es primo.
 esPrimo :: Int -> Bool
-esPrimo n | n <= 1 = False
-          | otherwise = not (existeDivisor n [2..(n-1)])
+esPrimo n = n > 1 && not (existeDivisor n [2..(n-1)])
 {-
 ghci> esPrimo 3
 True
