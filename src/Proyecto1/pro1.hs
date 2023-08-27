@@ -1,5 +1,6 @@
 -- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
 -- 1. Programá las siguientes funciones:
+
 --    a) esCero :: Int -> Bool, que verifica si un entero es igual a 0.
 esCero :: Int -> Bool
 esCero x = x == 0
@@ -9,6 +10,7 @@ False
 ghci> esCero 0
 True
 -}
+
 --    b) esPositivo :: Int -> Bool, que verifica si un entero es estrictamente mayor a 0.
 esPositivo :: Int -> Bool
 esPositivo x = x > 0
@@ -18,6 +20,7 @@ True
 ghci> esPositivo (-4)
 False
 -}
+
 --    c ) esVocal :: Char -> Bool, que verifica si un caracter es una vocal en minúscula.
 esVocal :: Char -> Bool
 esVocal x = x `elem` "aeiou"
@@ -52,6 +55,7 @@ True
     :                                        : 
     `----------------------------------------'  
 -}
+
 --    b) sumatoria :: [Int] -> Int, que calcula la suma de todos los elementos de una
 --    lista de enteros.
 sumatoria :: [Int] -> Int
@@ -63,6 +67,7 @@ ghci> sumatoria [1,2,3]
 ghci> sumatoria [1,2,3,30,21]
 57
 -}
+
 --    c ) productoria :: [Int] -> Int, que calcula el producto de todos los elementos de
 --    la lista de enteros.
 productoria :: [Int] -> Int
@@ -74,6 +79,7 @@ ghci> productoria [1,2,3]
 ghci> productoria [1,2,3,30,21]
 3780
 -}
+
 --    d ) factorial :: Int -> Int, que toma un número n y calcula n!.
 factorial :: Int -> Int
 factorial x = product [1..x]
@@ -83,6 +89,7 @@ ghci> factorial 4
 ghci> factorial 19
 121645100408832000
 -}
+
 --    e) Utiliza la función sumatoria para definir, promedio :: [Int] -> Int, que toma
 --    una lista de números no vacia y calcula el valor promedio (truncado, usando division
 --    entera).
@@ -128,6 +135,7 @@ False
 ghci> paraTodo' [0,0,0,0] esCero
 True
 -}
+
 --    b) existe’ :: [a] -> (a -> Bool) -> Bool, dada una lista xs de tipo [a] y un
 --    predicado t :: a -> Bool, determina si algún elemento de xs satisface el predicado
 --    t.
@@ -140,6 +148,7 @@ True
 ghci> existe' [8,9,23,4] esCero
 False
 -}
+
 --    c ) sumatoria’ :: [a] -> (a -> Int) -> Int, dada una lista xs de tipo [a] y una
 --    función t :: a -> Int (toma elementos de tipo a y devuelve enteros), calcula la
 --    suma de los valores que resultan de la aplicación de t a los elementos de xs.
@@ -150,6 +159,7 @@ sumatoria' (x:xs) f = f x + sumatoria' xs f
 ghci> sumatoria' [1,2,3,4] factorial
 33
 -}
+
 --    d ) productoria’ :: [a] -> (a -> Int) -> Int, dada una lista de xs de tipo [a]
 --    y una función t :: a -> Int, calcula el producto de los valores que resultan de la
 --    aplicación de t a los elementos de xs.
@@ -193,6 +203,7 @@ True
 ghci> todosPares [6,2,4]
 True
 -}
+
 --    b) hayMultiplo :: Int -> [Int] -> Bool verifica si existe algun número dentro del
 --    segundo parámetro que sea múltiplo del primer parámetro.
 esMultiplo :: Int -> Int -> Bool
@@ -205,6 +216,7 @@ False
 ghci> hayMultiplo 2 [1,9,8]
 True
 -}
+
 --   c ) sumaCuadrados :: Int -> Int, dado un ńumero no negativo n, calcula la suma de
 --   los primeros n cuadrados, es decir 〈∑i : 0 ≤i < n : i2〉.
 cuadrado :: Int -> Int
@@ -217,6 +229,7 @@ ghci> sumaCuadrados 3
 ghci> sumaCuadrados 8
 140
 -}
+
 --   d ) Programar la función existeDivisor::Int-> [Int] -> Bool, que dado en entero n
 --   y una lista ls , devuelve True si y solo si, existe algún elemento en ls que divida a na.
 esDivisor :: Int -> Int -> Bool
@@ -229,6 +242,7 @@ False
 ghci> existeDivisor 2 [9,9,1]
 True
 -}
+
 --   e) Utilizando la funcion del apartado anterior, definí la función esPrimo:: Int -> Bool,
 --   que dado un entero n, devuelve True si y solo si n es primo.
 esPrimo :: Int -> Bool
@@ -239,13 +253,16 @@ True
 ghci> esPrimo 4
 False
 -}
+
 -- f) ¿Se te ocurre como redefinir factorial (ej. 2d ) para evitar usar recursión?
 {-factorial :: Int -> Int
 factorial x = product [1..x]-}
+
 -- g ) Programar la función multiplicaPrimos :: [Int] -> Int que calcula el producto
 -- de todos los números primos de una lista
 multiplicaPrimos :: [Int] -> Int
 multiplicaPrimos xs = product (filter esPrimo xs)
+
 -- h) Programar la función esFib :: Int -> Bool, que dado un entero n, devuelve True
 -- si y sólo si n está en la sucesión de Fibonacci.
 fib :: Int -> Int
@@ -260,6 +277,7 @@ True
 ghci> esFib 10
 False
 -}
+
 -- i ) Utilizando la función del apartado anterior, definí la función todosFib :: [Int] -> Bool
 -- que dada una lista xs de enteros, devuelva si todos los elementos de la lista pertenecen
 -- (o no) a la sucesión de Fibonacci.
@@ -321,6 +339,7 @@ dupLista (x:xs) = (2*x) : dupLista xs
 ghci> dupLista [1,2,3,4]
 [2,4,6,8]
 -}
+
 --    b) Definila utilizando la función map.
 dupLista' :: (Num a) => [a] -> [a]
 dupLista' xs = map (*2) xs
@@ -345,6 +364,7 @@ ghci> primListas [1,2,3,4,5,6,7,8,9]
 ghci> primListas [1..100]
 [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
 -}
+
 --    b) Definila utilizando la funci ́on filter.
 primListas' :: [Int] -> [Int]
 primListas' xs = filter esPrimo xs
@@ -354,6 +374,7 @@ ghci> primListas' [1,2,3,4,5,6,7,8,9]
 ghci> primListas' [1..100]
 [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
 -}
+
 --    c) Revisá tu definicián del ejercicio 6g . ¿Cómo podes mejorarla?
 {-
 multiplicaPrimos :: [Int] -> Int
@@ -376,6 +397,7 @@ ghci> primIgualesA 1 [1,1,2,3,4,1,1,1]
 ghci> primIgualesA 2 [1,2,2,2,2,2,2,2]
 []
 -}
+
 --    b) Programá nuevamente la función utilizando takeWhile.
 primIgualesA' :: (Eq a) => a -> [a] -> [a]
 primIgualesA' x = takeWhile (==x)
@@ -402,6 +424,7 @@ ghci> primIguales [4,4,3,4,4,4,4,4,1]
 ghci> primIguales [3,4,3,4,4,4,4,4,1]
 [3]
 -}
+
 --    b) Usá cualquier versión de primIgualesA para programar primIguales. Está permitido
 --    dividir en casos, pero no usar recursián.
 primIguales' :: (Eq a) => [a] -> [a]
@@ -413,3 +436,52 @@ ghci> primIguales' [3,4,3,4,4,4,4,4,1]
 [3]
 -}
 -- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
+
+
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- 12 Todas las funciones del ejercicio 4 son similares entre s ́ı: cada una aplica la función
+-- término t a todos los elementos de una lista, y luego aplica algún operador entre todos ellos,
+-- obteniéndose así el resultado final. Para el caso de la lista vacía, se devuelve el elemento
+-- neutro. De esa manera cada una de ellas computa una cuantificación sobre los elementos de
+-- la lista transformados por t:
+--                   paratodo’.xs.t = 〈∀i : 0 ≤i < #xs : t.xs!i 〉
+--                    existe’.xs.t = 〈∃i : 0 ≤i < #xs : t.xs!i 〉
+--                  sumatoria’.xs.t = 〈Σ i : 0 ≤i < #xs : t.xs!i 〉
+--                 productoria’.xs.t = 〈Π i : 0 ≤i < #xs : t.xs!i 〉
+-- Por ejemplo, para sumatoria’ el operador asociado al cuantificador Σ es la suma (+), por
+-- lo que
+-- sumatoria’ [1,2,3] t = (t 1) + (t 2) + (t 3) + 0
+-- donde el cálculo consistió en aplicar t a cada elemento, combinándolos con el operador
+-- (+) hasta llegar a la lista vacía donde se devuelve el neutro de la suma (0). Guiándote por
+-- las observaciones anteriores, definí de manera recursiva la función cuantGen (denota la
+-- cuantificación generalizada):
+-- cuantGen :: (b -> b -> b) -> b -> [a] -> (a -> b) -> b
+-- cuantGen op z xs t = ...
+-- que tomando como argumento un operador op, su elemento neutro z, una lista de elementos
+-- xs y una función término t, aplica el operador a los elementos de la lista, transformados por
+-- la función término. En otras palabras, sea ⊕ un cuantificador cualquiera y  su operador
+-- asociado,
+--              cuantGen. .z.xs.t = 〈⊕ i : 0 ≤i < #xs : t.(xs ! i) 〉
+-- Reescribir todas las funciones del punto 4 utilizando el cuantificador generalizado (sin usar
+-- inducción y en una línea por función).
+cuantGen :: (b -> b -> b) -> b -> [a] -> (a -> b) -> b
+cuantGen op z xs t = foldr op z (map t xs)
+
+-- a) paraTodo' 
+paratodo''' :: [Bool] -> Bool
+paratodo''' xs = cuantGen (&&) True xs id
+
+-- b) existe' 
+existe''' :: [a] -> (a -> Bool) -> Bool
+existe''' xs t = cuantGen (||) False xs t
+
+-- c) sumatoria'
+sumatoria''' :: [a] -> (a -> Int) -> Int
+sumatoria''' xs t = cuantGen (+) 0 xs t
+
+-- d) productoria'
+productoria''' :: [a] -> (a -> Int) -> Int
+productoria''' xs t = cuantGen (*) 1 xs t
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
+
+
