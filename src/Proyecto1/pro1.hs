@@ -269,8 +269,8 @@ fib :: Int -> Int
 fib n | n <= 0    = 0
       | n == 1    = 1
       | otherwise = fib (n - 1) + fib (n - 2)
-esFib' :: Int -> Bool
-esFib' n = n `elem` [fib i | i <- [0..(n+1)]]
+esFib :: Int -> Bool
+esFib n = n `elem` [fib i | i <- [0..(n+1)]]
 {-
 ghci> esFib 5
 True
@@ -493,10 +493,18 @@ productoria''' xs t = cuantGen (*) 1 xs t
 -- los primeros elementos de cada lista:
 -- ◆ Si x==y, no suma y sigue computando la distancia para xs e ys ,
 -- ◆ Si x!=y, suma 1 y sigue computando la distancia para xs e ys 
+minTres :: Int -> Int -> Int -> Int
+minTres a b c = min a (min b c)
 distanciaEdicion :: [Char] -> [Char] -> Int
 distanciaEdicion [] ys = length ys
 distanciaEdicion xs [] = length xs
 distanciaEdicion (x:xs) (y:ys)
   | x == y = distanciaEdicion xs ys
-  | otherwise = 1 + distanciaEdicion xs ys
+  | otherwise = 1 + minTres (distanciaEdicion xs (y:ys)) (distanciaEdicion (x:xs) ys) (distanciaEdicion xs ys)
+{-
+ghci> distanciaEdicion "hola" "abc"
+4
+ghci> distanciaEdicion "hola" "holac"
+1
+-}
 -- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
