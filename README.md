@@ -1,7 +1,7 @@
 # Algoritmos y Estructuras de Datos
  ![Logo](https://www.famaf.unc.edu.ar/documents/3253/Logo-FAMAF_UNC-color-2.jpg)
 
-# Prácticos Haskell
+# Proyectos Haskell
 
 Guia de ejercicios resueltos de Haskell, provenientes de la materia Algoritmos y Estructuras de Datos de la carrera Ciencias de la Computación cursada en FAMAF.
 
