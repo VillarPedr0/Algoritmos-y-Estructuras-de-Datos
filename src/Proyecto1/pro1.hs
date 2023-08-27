@@ -485,3 +485,18 @@ productoria''' xs t = cuantGen (*) 1 xs t
 -- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
 
 
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- 13 Definir una función que se denomina distancia de edición . Que toma como entrada
+-- dos strings (lista de caracteres). distanciaEdicion :: [Char] -> [Char] -> Int. La función
+-- distanciaEdicion, se comporta de la siguiente manera: - Si alguna de las listas es vacía,
+-- devuelve la longitud de la otra lista. - Si las dos listas son no vac ́ıas: x:xs e y:ys, compara
+-- los primeros elementos de cada lista:
+-- ◆ Si x==y, no suma y sigue computando la distancia para xs e ys ,
+-- ◆ Si x!=y, suma 1 y sigue computando la distancia para xs e ys 
+distanciaEdicion :: [Char] -> [Char] -> Int
+distanciaEdicion [] ys = length ys
+distanciaEdicion xs [] = length xs
+distanciaEdicion (x:xs) (y:ys)
+  | x == y = distanciaEdicion xs ys
+  | otherwise = 1 + distanciaEdicion xs ys
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
