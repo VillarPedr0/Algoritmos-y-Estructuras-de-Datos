@@ -261,7 +261,8 @@ factorial x = product [1..x]-}
 -- g ) Programar la función multiplicaPrimos :: [Int] -> Int que calcula el producto
 -- de todos los números primos de una lista
 multiplicaPrimos :: [Int] -> Int
-multiplicaPrimos xs = product (filter esPrimo xs)
+multiplicaPrimos (x:xs) | esPrimo x = x* multiplicaPrimos xs
+                        | otherwise = multiplicaPrimos xs
 
 -- h) Programar la función esFib :: Int -> Bool, que dado un entero n, devuelve True
 -- si y sólo si n está en la sucesión de Fibonacci.
@@ -270,7 +271,7 @@ fib n | n <= 0    = 0
       | n == 1    = 1
       | otherwise = fib (n - 1) + fib (n - 2)
 esFib :: Int -> Bool
-esFib n = n `elem` [fib i | i <- [0..(n+1)]]
+esFib n = existe' (takeWhile (<= n) [fib i | i <- [0..(n+1)]]) (==n)
 {-
 ghci> esFib 5
 True
@@ -376,10 +377,9 @@ ghci> primListas' [1..100]
 -}
 
 --    c) Revisá tu definicián del ejercicio 6g . ¿Cómo podes mejorarla?
-{-
-multiplicaPrimos :: [Int] -> Int
-multiplicaPrimos xs = product (filter esPrimo xs)
--}
+multiplicaPrimos' :: [Int] -> Int
+multiplicaPrimos' xs = product (filter esPrimo xs)
+
 -- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
 
 
