@@ -171,3 +171,42 @@ potencia_3 x n | n > 0 = f x (n-1) x
 n_id :: a -> a
 n_id x = x
 -- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ -- 
+
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- Ejercicio 2.1. Definir el operador ~= tal que x ~= y se verifica si jx − yj < 0,0001
+(~=) :: Float -> Float -> Bool
+x ~= y = abs(x-y) < 0.0001
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ -- 
+
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- Ejercicio 2.2. Definir la función siguiente tal que siguiente x sea el siguiente del número
+-- entero x
+siguiente_1 :: Integer -> Integer
+siguiente_1 = (+1)
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
+
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- Ejercicio 2.3. Definir la función doble tal que doble x es el doble de x.
+-- ◆ Forma 1: Definición ecuacional
+doble_1 :: Num a => a -> a
+doble_1 x = 2*x
+-- ◆ Forma 2: Definición con instanciación parcial
+doble_2 :: Num a => a -> a
+doble_2 = ((*) 2)
+-- ◆ Forma 3: Definición con secciones
+doble_3 :: Num a => a -> a
+doble_3 = (2*)
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
+
+-- ╔═══════════════════════════════════════════════════════════════════════════════════════════╗ --
+-- Ejercicio 2.4. Definir la función mitad tal que mitad x es la mitad de x. 
+-- ◆ Forma 1: Definición ecuacional
+mitad_1 :: Double -> Double
+mitad_1 x = x/2
+-- ◆ Forma 2: Definición con instanciación parcial
+mitad_2 :: Double -> Double
+mitad_2 = (flip (/) 2)
+-- ◆ Forma 3: Definición con secciones
+mitad_3 :: Double -> Double
+mitad_3 = (/2)
+-- ╚═══════════════════════════════════════════════════════════════════════════════════════════╝ --
