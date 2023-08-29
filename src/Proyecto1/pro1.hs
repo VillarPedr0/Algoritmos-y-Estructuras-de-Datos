@@ -260,18 +260,34 @@ factorial x = product [1..x]-}
 
 -- g ) Programar la función multiplicaPrimos :: [Int] -> Int que calcula el producto
 -- de todos los números primos de una lista
+-- En este caso redefiní la función esPrimo que va a devolver el mismo número en caso de
+-- ser primo, de lo contrario, devuelve 1, con el objero de que sea el neutro de la multiplicación
+-- y usarlo mediante la función productoria'
+esPrimo' :: Int -> Int
+esPrimo' n = 
+    if n <= 1
+        then 1  
+    else if n > 1 && not (existeDivisor n [2..(n-1)])
+        then n
+    else 1
 multiplicaPrimos :: [Int] -> Int
-multiplicaPrimos (x:xs) | esPrimo x = x* multiplicaPrimos xs
-                        | otherwise = multiplicaPrimos xs
+multiplicaPrimos [] = 1
+multiplicaPrimos xs = productoria' xs esPrimo'
+{-
+ghci> multiplicaPrimos [1,1,1,3]
+3
+ghci> multiplicaPrimos [1,1,1]
+1
+-}
 
 -- h) Programar la función esFib :: Int -> Bool, que dado un entero n, devuelve True
 -- si y sólo si n está en la sucesión de Fibonacci.
 fib :: Int -> Int
-fib n | n <= 0    = 0
-      | n == 1    = 1
-      | otherwise = fib (n - 1) + fib (n - 2)
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
 esFib :: Int -> Bool
-esFib n = existe' (takeWhile (<= n) [fib i | i <- [0..(n+1)]]) (==n)
+esFib n = existe' (takeWhile (<= n) [fib i | i <- [0..n]]) (==n)
 {-
 ghci> esFib 5
 True
